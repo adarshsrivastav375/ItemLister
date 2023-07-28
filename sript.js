@@ -73,15 +73,60 @@ let h1 = document.querySelector('header h1');
 newDiv.style.fontSize = '30px'
 //insertBefore any item
 container.insertBefore(newDiv , h1);
-let liNode = document.createElement('li');
-console.log(liNode);
-liNode.className='list-group-item';
-liNode.textContent='hello world';
-let list = document.querySelector('#items');
-let firstItem = document.querySelector('#items').firstElementChild
-console.log(firstItem)
-list.insertBefore(liNode , firstItem);
+// //create li
+// let liNode = document.createElement('li');
+// console.log(liNode);
+// liNode.className='list-group-item';
+// liNode.textContent='hello world';
+// //  delete btn create
+// let Dbutton = document.createElement('button');
+// Dbutton.className = 'btn btn-danger float-lg-right btn-sm';
+// Dbutton.textContent ="X";
+// // edit button created 
+// let eButton = document.createElement('button');
+// eButton.className ='btn btn-primary float-lg-right btn-sm';
+// eButton.textContent ="Edit";
 
+// liNode.appendChild( eButton, Dbutton);
+// let list = document.querySelector('#items');
+// let firstItem = document.querySelector('#items').firstElementChild
+// console.log(firstItem)
+// list.insertBefore(liNode , firstItem);
+
+
+// add items
+let form =document.getElementById('addForm');
+let listItem = document.getElementById('items');
+ form.addEventListener('submit', addItem);
+ // delete event
+listItem.addEventListener('click', deleteItem);
+
+ //add Item
+ function addItem(e){
+    e.preventDefault();
+    //get input value;
+    let newItem = document.getElementById('nItem').value;
+    let li = document.createElement('li');
+    li.className = 'list-group-item';
+
+    // create delete button 
+    let deleteButton = document.createElement('button');
+    deleteButton.className = 'btn btn-danger float-lg-right btn-sm m-1 delete';
+    deleteButton.textContent= 'X';
+    li.appendChild(deleteButton);
+    li.appendChild(document.createTextNode(newItem));
+    listItem.appendChild(li);
+ }
+ // delete Item;
+ function deleteItem (e){
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are you dure ?')){
+            let li = e.target.parentElement;
+            listItem.removeChild(li);
+        }
+    }
+
+ }
 
 
 
