@@ -1,2 +1,2 @@
-# sharpenerDemo
-just a demo for sharpener commits
+# Item Lister 
+A sharpener internship project
